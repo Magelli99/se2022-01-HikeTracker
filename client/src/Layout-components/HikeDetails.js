@@ -1,7 +1,7 @@
 import 'leaflet/dist/leaflet.css';
 import { useContext, useEffect, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { Button, Col, Container, Row } from "react-bootstrap";
+import { useNavigate, useParams } from "react-router-dom";
 import AuthContext from "../AuthContext";
 import { MapContainer, Marker, Polyline, Popup, TileLayer, useMap } from 'react-leaflet';
 import API from '../API';
@@ -10,8 +10,8 @@ function HikeDetails(props) {
   const auth = useContext(AuthContext);
 
   const params = useParams();
-  const [hike, setHike] = useState(
-    {
+  const [hike, setHike] = useState(undefined
+    /*{
       Ascent: 2,
       City: "City1",
       Description: "a simple test description added with API and after modified",
@@ -24,11 +24,12 @@ function HikeDetails(props) {
       Title: "Hike1",
       end: "end1",
       start: "start1",
-    }
+    }*/
   );
   const [gpxData, setGpxData] = useState(undefined);  // array of [p.lat, p.lon]
   const [loading, setLoading] = useState(true);
 
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loadHike = async () => {    // NEED API TO GET HIKE GIVEN ID, NEED API TO GET PARSED GPX DATA
@@ -69,6 +70,11 @@ function HikeDetails(props) {
           </Row>
           <Row>
             <Col>Description: {hike.Description}</Col>
+            {auth.user.role === 'l' &&
+              <Col>
+                <Button /*onClick={() => navigate()}*/>Modify</Button>
+              </Col>
+            }
           </Row>
           <p></p>
           <hr />
