@@ -9,6 +9,7 @@ import { LoginComponent } from './Layout-components/LoginComponent';
 import { RegisterComponent } from './Layout-components/RegisterComponent';
 import HikeDetails from './Layout-components/HikeDetails';
 
+
 function App() {
 
   const [auth, setAuth] = useState({  // login information
