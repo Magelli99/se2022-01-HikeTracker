@@ -5,11 +5,14 @@ import { useParams } from "react-router-dom";
 import AuthContext from "../AuthContext";
 import API from '../API';
 
-function HikeDescription(props)
+function HikeDescription()
 {
+   const  params=useParams();
+   const hikeId=params.hikeId;
     const handleSubmit = (e) => {
         //Inserire API, in input alla API idHike , inserisce nel db la description. 
         //per ora inserirei solo la descrizione testuale, dopo pensiamo a come e se salvare il file
+        console.log(hikeId);
       }
     const [description,setDescription]=useState("");
     const [file,setFile]=useState();

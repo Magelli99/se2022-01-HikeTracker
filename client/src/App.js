@@ -78,7 +78,7 @@ function AppLayout(props) {
       <Route path='/register' element={
         <RegisterComponent register={props.register} />
       } />
-      <Route path='/modifyHikeDesc' element={ <HikeDescription /> } />
+      <Route path='/modifyHikeDesc/:hikeId' element={ <HikeDescription /> } />
     </Routes>
   );
 }
