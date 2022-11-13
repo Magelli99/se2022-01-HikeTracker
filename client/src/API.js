@@ -123,7 +123,8 @@ async function logIn(credentials) {
   }
   
   async function logOut() {
-    await fetch((APIURL+'/sessions/current'), { method: 'DELETE', credentials: 'include' });
+    const response = await fetch((APIURL+'/sessions/current'), { method: 'DELETE', credentials: 'include' });
+    return response.ok ? true : false;
   }
   
   async function getUserInfo() {

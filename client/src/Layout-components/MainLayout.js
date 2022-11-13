@@ -1,14 +1,12 @@
 import AuthContext from '../AuthContext';
-import { Col, Container, Navbar, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import { useContext, useState, useEffect } from "react";
 import HikeList from './HikeList';
 import API from '../API';
 import Sidebar from './Sidebar';
-import { LoginComponent } from './LoginComponent';
 
 
 function MainLayout(props) {
-  const auth = useContext(AuthContext);
 
   const [hikes, setHikes] = useState([]); //empty array of hikes
   const [loading, setLoading] = useState(true);
@@ -28,7 +26,6 @@ function MainLayout(props) {
 
   return (
     <>
-      <Navigation login={props.login} logout={props.logout} />
       <Container fluid className={'vh-100'}>
         <p></p>
         {!loading &&
@@ -43,16 +40,6 @@ function MainLayout(props) {
         }
       </Container>
     </>
-  );
-}
-
-function Navigation(props) {
-  const auth = useContext(AuthContext);
-
-  return (
-    <Navbar bg="light">
-      <LoginComponent login={props.login} />
-    </Navbar>
   );
 }
 

@@ -1,6 +1,6 @@
 import { Navbar, Container, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { logOut } from '../API';
+import API from '../API';
 
 function NavigationBar(props){
     const navigate = useNavigate();
@@ -10,15 +10,15 @@ function NavigationBar(props){
                 <i className="bi bi-building"></i>
                 <span className="d-none d-md-inline">Hike-Tracker</span>
             </h2>
-            <h3 className='text-white'>Welcome, {props.logged === '' ? 'Guest' : props.logged.email}!</h3>
-            {props.logged ? <Logout setLogged = {props.setLogged} navigate={navigate} user={props.logged}/> : <Login navigate={navigate}/>}
+            <h3 className='text-white'>Welcome, {props.logged.login === false ? 'Guest' : props.logged.user.Id}!</h3>
+            {props.logged.login ? <Logout setLogged = {props.setLogged} navigate={navigate} user={props.logged}/> : <Login navigate={navigate}/>}
         </Container>
     </Navbar>
 }
 
 function Login(props){
-    return <div className='col-4 d-flex flex-row-reverse' onClick={ () => props.navigate('/login')}>
-        <Button variant="outline-success">
+    return <div className='col-4 d-flex flex-row-reverse'>
+        <Button variant="outline-success" onClick={ () => props.navigate('/login')}>
             <span className='btn-icon'><i className="bi bi-box-arrow-in-right mr-2"></i></span><span>Log-In</span>
         </Button>
         <Button variant="outline-success" onClick={() => props.navigate('/register')}>
@@ -36,9 +36,12 @@ function Logout(props){
 }
 
 const handleLogout = async (setLogged, navigate, id) => {
-    if (await logOut()){
-        setLogged('');
-        navigate('/'+id);
+    if (await API.logOut()){
+        setLogged({
+            login: false,
+            user: undefined,
+        });
+        navigate('/');
     }
 };
 

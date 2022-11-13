@@ -1,17 +1,14 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Login.css'
 import { Form, Button, Row, Col } from 'react-bootstrap';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AuthContext from '../AuthContext';
 
 function LoginComponent(props) {
-  const auth = useContext(AuthContext);
 
   return (
     <div className="auth-wrapper">
       <div className="auth-inner">
-        {!auth.login &&
           <>
             <Row>
               <Col></Col>
@@ -24,12 +21,6 @@ function LoginComponent(props) {
               <Col></Col>
             </Row>
           </>
-        }
-        {auth.login &&
-          <>
-            LOGOUT BUTTON
-          </>
-        }
       </div>
     </div>
   );
@@ -61,8 +52,6 @@ function LoginForm(props) {
       </Form.Group>
 
       <div className="d-grid"><Button type="submit" variant='success'>Login</Button></div>
-      <p></p>
-      <div className="d-grid"><Button type="button" variant='primary' onClick={() => navigate("/register")}>Register</Button></div>
     </Form>
   )
 };
