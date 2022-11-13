@@ -72,7 +72,7 @@ function HikeDetails(props) {
             <Col>Description: {hike.Description}</Col>
             {auth.user.role === 'l' &&
               <Col>
-                <Button /*onClick={() => navigate()}*/>Modify</Button>
+                <Button onClick={() => navigate("modifyHikeDesc")}>Modify</Button>
               </Col>
             }
           </Row>

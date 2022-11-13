@@ -8,6 +8,7 @@ import API from './API';
 import { LoginComponent } from './Layout-components/LoginComponent';
 import { RegisterComponent } from './Layout-components/RegisterComponent';
 import HikeDetails from './Layout-components/HikeDetails';
+import { HikeDescription } from './Layout-components/HikeDescription';
 
 
 function App() {
@@ -77,6 +78,7 @@ function AppLayout(props) {
       <Route path='/register' element={
         <RegisterComponent register={props.register} />
       } />
+      <Route path='/modifyHikeDesc' element={ <HikeDescription /> } />
     </Routes>
   );
 }
